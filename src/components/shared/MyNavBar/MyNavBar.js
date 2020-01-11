@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -21,13 +22,13 @@ class MyNavBar extends React.Component {
         return (
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/">Home</a>
+              <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">My Stuff</a>
+              <Link className="nav-link" to="/stuff">My Stuff</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">New</a>
+              <Link className="nav-link" to="/stuff/new">New</Link>
             </li>
             <li className="nav-item">
               <button className="nav-link btn btn-dark" onClick={this.logMeOut}>Log Out</button>
@@ -41,7 +42,7 @@ class MyNavBar extends React.Component {
     return (
       <div className="MyNavBar">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
-          <a className="navbar-brand" href="/">Crap-Tracker-2000</a>
+          <Link className="navbar-brand" to="/">Crap-Tracker-2000</Link>
          <button className="navbar-toggler" type="button" data-toggle="collapse"
          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
