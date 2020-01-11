@@ -1,14 +1,31 @@
 import React from 'react';
+import itemsData from '../../../helpers/data/itemsData';
 
 import './SingleStuff.scss';
 
 class SingleStuff extends React.Component {
+  state = {
+    item: {},
+  }
+
+  componentDidMount() {
+    const { itemId } = this.props.match.params;
+
+    itemsData.getSingleItem(itemId)
+      .then((response) => {
+        this.setState({ item: response.data });
+      })
+      .catch((error) => console.error('error from single stuff', error));
+  }
+
   render() {
-    const { edit } = this.props.match.params;
+    const { item } = this.state;
 
     return (
-      <div className="SingleStuff">
-        { edit === 'edit' ? (<h1>Edit</h1>) : (<h1>Single Stuff</h1>) }
+      <div className="SingleStuff container">
+        <h1>{item.itemName}</h1>
+        <img className="w-50" src={item.itemImage} alt={item.itemName} />
+        <h4>{item.itemDescription}</h4>
       </div>
     );
   }

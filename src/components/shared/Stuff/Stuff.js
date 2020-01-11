@@ -1,12 +1,12 @@
 import React from 'react';
 import './Stuff.scss';
 import { Link } from 'react-router-dom';
-// import itemShape from '../../../helpers/propz/itemShape';
+import itemShape from '../../../helpers/propz/itemShape';
 
 class Stuff extends React.Component {
-  // static propTypes = {
-  //   item: itemShape.itemShape,
-  // }
+  static propTypes = {
+    item: itemShape.itemShape,
+  }
 
   render() {
     const { item } = this.props;

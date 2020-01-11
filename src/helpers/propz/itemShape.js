@@ -8,4 +8,4 @@ const itemShape = PropTypes.shape({
   uid: PropTypes.string,
 });
 
-export default itemShape;
+export default { itemShape };
