@@ -1,10 +1,11 @@
 import React from 'react';
+import MyNavBar from '../components/shared/MyNavBar/MyNavBar';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-     <button className="btn btn-dark">Bootstrap Button</button>
+     <MyNavBar />
     </div>
   );
 }
