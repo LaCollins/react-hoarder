@@ -1,8 +1,43 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import './MyNavBar.scss';
 
 class MyNavBar extends React.Component {
+  static propTypes = {
+    authed: PropTypes.bool,
+  }
+
+  logMeOut = (e) => {
+    e.preventDefault();
+    firebase.auth().signOut();
+  }
+
   render() {
+    const { authed } = this.props;
+    const buildNavbar = () => {
+      if (authed) {
+        return (
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="/">Home</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">My Stuff</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">New</a>
+            </li>
+            <li className="nav-item">
+              <button className="nav-link btn btn-dark" onClick={this.logMeOut}>Log Out</button>
+            </li>
+          </ul>
+        );
+      }
+      return (<ul className="navbar-nav ml-auto"></ul>);
+    };
+
     return (
       <div className="MyNavBar">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
@@ -13,8 +48,7 @@ class MyNavBar extends React.Component {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto">
-            </ul>
+            { buildNavbar() }
           </div>
         </nav>
       </div>
