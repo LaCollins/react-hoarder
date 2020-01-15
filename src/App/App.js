@@ -9,7 +9,7 @@ import MyNavBar from '../components/shared/MyNavBar/MyNavBar';
 import firebaseConnection from '../helpers/data/connection';
 import Home from '../components/pages/Home/Home';
 import Auth from '../components/pages/Auth/Auth';
-import NewStuff from '../components/pages/NewStuff/NewStuff';
+import ItemForm from '../components/pages/ItemForm/ItemForm';
 import MyStuff from '../components/pages/MyStuff/MyStuff';
 import SingleStuff from '../components/pages/SingleStuff/SingleStuff';
 import './App.scss';
@@ -55,7 +55,7 @@ class App extends React.Component {
           <Switch>
             <PrivateRoute path="/" exact component={Home} authed={authed}/>
             <PublicRoute path="/auth" exact component={Auth} authed={authed} />
-            <PrivateRoute path="/stuff/new" exact component={NewStuff} authed={authed} />
+            <PrivateRoute path="/stuff/new" exact component={ItemForm} authed={authed} />
             <PrivateRoute path="/stuff" exact component={MyStuff} authed={authed}/>
             <PrivateRoute path="/stuff/:itemId" exact component={SingleStuff} authed={authed}/>
             <PrivateRoute path="/stuff/12345/:edit" exact component={SingleStuff} authed={authed}/>
