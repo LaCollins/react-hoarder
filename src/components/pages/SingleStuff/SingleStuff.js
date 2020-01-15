@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import itemsData from '../../../helpers/data/itemsData';
 
 import './SingleStuff.scss';
@@ -20,10 +21,14 @@ class SingleStuff extends React.Component {
 
   render() {
     const { item } = this.state;
+    const { itemId } = this.props.match.params;
 
     return (
       <div className="SingleStuff container">
         <h1>{item.itemName}</h1>
+        <div className="d-flex justify-content-center">
+        <Link className="btn btn-dark m-2" to={`/stuff/${itemId}/edit`}>Edit</Link>
+        </div>
         <img className="w-50" src={item.itemImage} alt={item.itemName} />
         <h4>{item.itemDescription}</h4>
       </div>

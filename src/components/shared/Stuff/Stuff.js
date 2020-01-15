@@ -19,7 +19,8 @@ class Stuff extends React.Component {
             <img className="card-img" src={item.itemImage} alt={item.itemName} />
           </div>
           <div className="card-footer">
-            <Link className="btn btn-dark" to={`/stuff/${item.id}`}>View</Link>
+            <Link className="btn btn-dark m-2" to={`/stuff/${item.id}`}>View</Link>
+            <Link className="btn btn-dark m-2" to={`/stuff/${item.id}/edit`}>Edit</Link>
           </div>
         </div>
       </div>

@@ -11,6 +11,17 @@ class ItemForm extends React.Component {
     itemUrl: '',
   }
 
+  componentDidMount() {
+    const { itemId } = this.props.match.params;
+    if (itemId) {
+      itemsData.getSingleItem(itemId)
+        .then((response) => {
+          this.setState({ itemName: response.data.itemName, itemUrl: response.data.itemImage, itemDescription: response.data.itemDescription });
+        })
+        .catch((error) => console.error('err from component did mount', error));
+    }
+  }
+
   nameChange = (e) => {
     e.preventDefault();
     this.setState({ itemName: e.target.value });
@@ -39,8 +50,23 @@ class ItemForm extends React.Component {
       .catch((error) => console.error('err from save item event', error));
   }
 
+  saveChangesEvent = (e) => {
+    e.preventDefault();
+    const { itemId } = this.props.match.params;
+    const updatedItem = {
+      itemName: this.state.itemName,
+      itemImage: this.state.itemUrl,
+      itemDescription: this.state.itemDescription,
+      uid: authData.getUid(),
+    };
+    itemsData.updateItem(itemId, updatedItem)
+      .then(() => this.props.history.push('/stuff'))
+      .catch((error) => console.error('err from save item event', error));
+  }
+
   render() {
     const { itemName, itemDescription, itemUrl } = this.state;
+    const { itemId } = this.props.match.params;
 
     return (
       <div className="ItemForm">
@@ -77,7 +103,11 @@ class ItemForm extends React.Component {
             >
             </input>
         </div>
-        <button className="btn btn-dark" onClick={this.saveItemEvent}>Save Item</button>
+        {
+          itemId
+            ? (<button className="btn btn-dark" onClick={this.saveChangesEvent}>Save Changes</button>)
+            : (<button className="btn btn-dark" onClick={this.saveItemEvent}>Save Item</button>)
+        }
       </form>
       </div>
     );

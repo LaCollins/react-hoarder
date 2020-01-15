@@ -58,7 +58,7 @@ class App extends React.Component {
             <PrivateRoute path="/stuff/new" exact component={ItemForm} authed={authed} />
             <PrivateRoute path="/stuff" exact component={MyStuff} authed={authed}/>
             <PrivateRoute path="/stuff/:itemId" exact component={SingleStuff} authed={authed}/>
-            <PrivateRoute path="/stuff/12345/:edit" exact component={SingleStuff} authed={authed}/>
+            <PrivateRoute path="/stuff/:itemId/edit" exact component={ItemForm} authed={authed}/>
           </Switch>
         </Router>
       </div>
