@@ -19,6 +19,14 @@ class SingleStuff extends React.Component {
       .catch((error) => console.error('error from single stuff', error));
   }
 
+  deleteItemEvent = (e) => {
+    e.preventDefault();
+    const { itemId } = this.props.match.params;
+    itemsData.deleteItem(itemId)
+      .then(() => this.props.history.push('/stuff'))
+      .catch((error) => console.error('error from single stuff', error));
+  }
+
   render() {
     const { item } = this.state;
     const { itemId } = this.props.match.params;
@@ -28,6 +36,7 @@ class SingleStuff extends React.Component {
         <h1>{item.itemName}</h1>
         <div className="d-flex justify-content-center">
         <Link className="btn btn-dark m-2" to={`/stuff/${itemId}/edit`}>Edit</Link>
+        <button className="btn btn-dark m-2" onClick={this.deleteItemEvent}>Delete</button>
         </div>
         <img className="w-50" src={item.itemImage} alt={item.itemName} />
         <h4>{item.itemDescription}</h4>
