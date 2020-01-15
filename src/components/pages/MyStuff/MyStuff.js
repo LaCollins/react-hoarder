@@ -10,6 +10,12 @@ class MyStuff extends React.Component {
     stuff: [],
   }
 
+  deleteItem = (itemId) => {
+    itemsData.deleteItem(itemId)
+      .then(() => this.getStuff())
+      .catch((error) => console.error('error from deleteItem', error));
+  }
+
   getStuff = () => {
     itemsData.getItemsByUid(authData.getUid())
       .then((stuff) => this.setState({ stuff }))
@@ -20,12 +26,13 @@ class MyStuff extends React.Component {
     this.getStuff();
   }
 
+
   render() {
     return (
       <div className="MyStuff">
         <h1>My Stuff</h1>
         <div className="stuff container d-flex flex-wrap">
-          {this.state.stuff.map((item) => <Stuff key={item.id} item={item} />)}
+          {this.state.stuff.map((item) => <Stuff key={item.id} deleteItem={this.deleteItem} item={item} />)}
         </div>
       </div>
     );
